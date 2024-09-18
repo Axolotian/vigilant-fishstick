@@ -1,42 +1,77 @@
-class AxoTest {
+class HyperTest {
   getInfo() {
     return {
-      id: 'axotest',
-      name: 'Test',
+      id: 'hypertest',
+      name: 'please help me',
       blocks: [
         {
-          opcode: 'hello',
+          opcode: 'convert',
           blockType: Scratch.BlockType.REPORTER,
-          text: 'test'
-        },        
-        {
-          opcode: 'test',
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'test'
-        }.
-        {
-          opcode: 'testwithargs',
-          blockType: Scratch.BlockType.REPORTER,
-          text: 'testwithargs[INPUT]'
+          text: 'convert [TEXT] to [FORMAT]',
           arguments: {
-            INPUT: {
-              type: Scratch.ArgumentType.STRING
+            TEXT: {
+              type: Scratch.ArgumentType.STRING,
+              defaultValue: 'Apple'
+            },
+            FORMAT: {
+              type: Scratch.ArgumentType.STRING,
+              menu: 'FORMAT_MENU'
+            }
+          }
+        },
+        {
+          opcode: 'register',
+          blockType: Scratch.BlockType.COMMAND,
+          text: 'register [TEXT] to [FORMAT]',
+          arguments: {
+            TEXT: {
+              type: Scratch.ArgumentType.STRING,
+              defaultValue: 'Test'
+            },
+            FORMAT: {
+              type: Scratch.ArgumentType.STRING,
+              menu: 'TYPE'
             }
           }
         }
-      ]
+      ],
+      menus: {
+        FORMAT_MENU: {
+          acceptReporters: true,
+          items: [
+            {
+              text: 'UPPERCASE',
+              value: 'up'
+            },
+            {
+              text: 'lowercase',
+              value: 'low'
+            }
+          ]
+        },
+        TYPE: {
+          acceptReporters: true,
+          items: [
+            {
+              text: '1',
+              value: 'up'
+            },
+            {
+              text: '2',
+              value: 'low'
+            }
+          ]
+        }
+      }
     };
   }
 
-  hello() {
-    return 'Axolotls!';
-  }
-  test() {
-  pass
-  }
-  testwithargs(){
-  	return INPUT;
+  convert (args) {
+    if (args.FORMAT === 'up') {
+      return args.TEXT.toString().toUpperCase();
+    } else {
+      return args.TEXT.toString().toLowerCase();
+    }
   }
 }
-
-Scratch.extensions.register(new AxoTest());
+Scratch.extensions.register(new HyperTest());

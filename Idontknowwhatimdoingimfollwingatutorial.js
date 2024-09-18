@@ -22,7 +22,7 @@ class HyperTest {
         {
           opcode: 'register',
           blockType: Scratch.BlockType.COMMAND,
-          text: 'register [TEXT] to [FORMAT]',
+          text: 'create new xxx with [FORMAT] named [TEXT]',
           arguments: {
             TEXT: {
               type: Scratch.ArgumentType.STRING,

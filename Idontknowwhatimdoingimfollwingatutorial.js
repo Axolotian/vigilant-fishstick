@@ -11,12 +11,12 @@ class AxoTest {
         },        
         {
           opcode: 'test',
-          blockType: Scratch.BlockType.COMMAND,
+          blockType: Scratch.BlockType.REPORTER,
           text: 'test'
         }.
         {
           opcode: 'testwithargs',
-          blockType: Scratch.BlockType.COMMAND,
+          blockType: Scratch.BlockType.REPORTER,
           text: 'testwithargs[INPUT]'
           arguments: {
             INPUT: {

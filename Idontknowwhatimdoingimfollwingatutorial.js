@@ -33,6 +33,11 @@ class HyperTest {
               menu: 'TYPE'
             }
           }
+        },
+        {
+          opcode: 'getRandomNumber',
+          blockType: Scratch.BlockType.REPORTER,
+          text: 'get random number',
         }
       ],
       menus: {
@@ -66,12 +71,25 @@ class HyperTest {
     };
   }
 
-  convert (args) {
+  convert(args) {
     if (args.FORMAT === 'up') {
       return args.TEXT.toString().toUpperCase();
     } else {
       return args.TEXT.toString().toLowerCase();
     }
   }
+
+  async getRandomNumber() {
+    try {
+      // Fetch random number from the Python backend
+      const response = await fetch('http://127.0.0.1:5000/random-number');
+      const data = await response.json();
+      return data.test;  // Return the random number received from Python
+    } catch (error) {
+      console.error('Error fetching random number:', error);
+      return 'Error';
+    }
+  }
 }
+
 Scratch.extensions.register(new HyperTest());
